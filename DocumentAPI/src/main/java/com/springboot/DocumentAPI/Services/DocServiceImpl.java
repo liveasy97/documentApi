@@ -168,7 +168,7 @@ public class DocServiceImpl implements DocService {
 						client.setObjectAcl(bucketname, imageName, CannedAccessControlList.PublicReadWrite);
 						URL url = client.getUrl(bucketname, imageName);
 						database.setDocumentLink(url.toString());
-						//fileobj.delete();
+						fileobj.delete();
 					}
 	
 					database.setVerified(user.isVerified());
