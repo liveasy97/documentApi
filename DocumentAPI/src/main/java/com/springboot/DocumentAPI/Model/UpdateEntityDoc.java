@@ -5,7 +5,6 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class MainDocForPost {
-	private String entityId;
-	private List<DocData> data;
+public class UpdateEntityDoc {
+	private List<DocData> documents;
 }

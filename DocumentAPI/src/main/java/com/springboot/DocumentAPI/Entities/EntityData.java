@@ -7,10 +7,10 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Document {
+public class EntityData {
 	@Id
 	private String entityId;
-	private String docId;
+	private String documentId;
 	private String date;
 	private boolean verfied;
 }
