@@ -1,14 +1,14 @@
 swagger: '2.0'
 info:
-  description: DocumentsAPI Documentation
+  description: DocumentAPI Documentation
   version: '1.0'
-  title: DocumentsAPI Documentation
+  title: DocumentAPI Documentation
   termsOfService: 'urn:tos'
   contact: {}
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0'
-host: 'localhost:8080'
+host: 'localhost:9090'
 basePath: /
 tags:
   - name: controller

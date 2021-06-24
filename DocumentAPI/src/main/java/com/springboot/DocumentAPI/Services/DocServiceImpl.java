@@ -32,12 +32,14 @@ public class DocServiceImpl implements DocService {
 
 	@Autowired
 	private DocumentDataDao docDataDao;
+	
 	@Autowired
 	private EntityDao entityDao;
+	
 	@Autowired
 	private AmazonS3 client;
 	
-	private String bucketname = "liveasyuploadimage";
+	private String bucketname = "liveasyimageupload";
 
 	@Override
 	public DocumentCreateResponse addDocument(AddEntityDoc entityDoc) {
