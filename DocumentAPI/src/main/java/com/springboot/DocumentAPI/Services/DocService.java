@@ -2,21 +2,22 @@ package com.springboot.DocumentAPI.Services;
 
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
-import com.springboot.DocumentAPI.Entities.Document;
-import com.springboot.DocumentAPI.Model.MainDocForPost;
-import com.springboot.DocumentAPI.Model.MainDocForUpdate;
+import com.springboot.DocumentAPI.Entities.EntityData;
+import com.springboot.DocumentAPI.Model.AddEntityDoc;
+import com.springboot.DocumentAPI.Model.DocData;
+import com.springboot.DocumentAPI.Model.UpdateEntityDoc;
 import com.springboot.DocumentAPI.Response.DocumentCreateResponse;
 import com.springboot.DocumentAPI.Response.DocumentUpdateResponse;
-import com.springboot.DocumentAPI.Model.MainDocForGet;
+import com.springboot.DocumentAPI.Model.GetEntityDoc;
 
 public interface DocService {
 
-	DocumentCreateResponse addDocument(MultipartFile[] file, MainDocForPost mainDocForPost);
+	DocumentCreateResponse addDocument(AddEntityDoc addEntityDoc);
 
-	MainDocForGet getDocuments(String entityId);
+	GetEntityDoc getDocuments(String entityId);
 
-	List<Document> getByEntityType(String entityType);
+	List<EntityData> getByEntityType(String entityType);
 
-	DocumentUpdateResponse updateDocuments(String entityId, MultipartFile[] file, MainDocForUpdate mainDocForUpdate);
+	DocumentUpdateResponse updateDocuments(String entityId, UpdateEntityDoc updateEntityDoc);
 
 }
