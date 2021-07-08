@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class DocumentList {
+public class DocumentData {
 	@Id
 	private String Id;
-	private String docId;
-	private String docType;
-	private String docLink;
+	private String documentId;
+	private String documentType;
+	private String documentLink;
 	private boolean verified;
 }
