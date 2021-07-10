@@ -27,6 +27,11 @@ public class Controller {
 	@Autowired
 	private DocService docService;
 	
+	@GetMapping("/home")
+	public String home() {
+		return "Welcome to documentApi...!!!";
+	}
+	
 	@PostMapping("/document")
 	public DocumentCreateResponse addDocument(@RequestBody AddEntityDoc addEntityDoc) {
 		return docService.addDocument(addEntityDoc);
