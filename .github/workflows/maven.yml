@@ -27,7 +27,7 @@ jobs:
       run: mvn -B package --file pom.xml
       
       
-    - run: cd ~/actions-runner-document/deploy/documentApi/documentApi/DocumentApi
+    - run: cd ~/actions-runner-document/deploy/documentApi/documentApi/DocumentAPI
     - run: sudo docker container stop document-container || true
     - run: sudo docker container stop docker-postgres || true
     - run: sudo docker container rm document-container
