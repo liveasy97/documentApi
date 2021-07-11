@@ -10,7 +10,7 @@ on:
 
 defaults:
   run:
-    working-directory: ./DocumentApi
+    working-directory: ./DocumentAPI
 jobs:
   build:
     runs-on: self-hosted
