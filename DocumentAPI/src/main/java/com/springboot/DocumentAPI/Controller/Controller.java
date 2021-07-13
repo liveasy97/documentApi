@@ -29,7 +29,7 @@ public class Controller {
 	
 	@GetMapping("/home")
 	public String home() {
-		return "Welcome to documentApi...!!!";
+		return "Welcome to documentApi git action check...!!!";
 	}
 	
 	@PostMapping("/document")
