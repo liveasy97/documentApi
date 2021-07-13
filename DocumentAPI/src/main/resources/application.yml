@@ -1,8 +1,8 @@
 cloud:
   aws:
     credentials:
-      access-key: Enter access key
-      secret-key: Enter secret key
+      access-key: Enter-access-key
+      secret-key: Enter-secret-key
       
     region:
       static: ap-south-1
