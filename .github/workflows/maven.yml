@@ -13,7 +13,7 @@ defaults:
     working-directory: ./DocumentAPI
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v2
@@ -27,7 +27,8 @@ jobs:
       run: mvn -B package --file pom.xml
       
       
-    - run: cd ~/actions-runner/deploy/documentApi/documentApi/DocumentAPI
+
+    - run: cd ~/actions-runner2/deploy/documentApi/documentApi/DocumentAPI
     - run: sudo docker container stop document-container || true
     - run: sudo docker container stop docker-postgres || true
     - run: sudo docker container rm document-container
