@@ -5,7 +5,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ test ]
+    branches: [ main ]
 
 
 defaults:
@@ -33,5 +33,5 @@ jobs:
     - run: sudo docker container stop docker-postgres || true
     - run: sudo docker build -t documenttest .
     - run: sudo docker start docker-postgres || sudo docker run --name docker-postgres -e POSTGRES_PASSWORD=postgres -d postgres:latest
-    - run: sudo docker run --env-file=test.env -p 9090:9090 --name document-container-test --link docker-postgres:postgres documenttest | echo "success" 
+    - run: sudo docker run --env-file my-env.txt -p 9090:9090 --name document-container-test --link docker-postgres:postgres documenttest env | echo "success" 
 
