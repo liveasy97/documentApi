@@ -16,7 +16,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 @Configuration
 public class AWSS3Client {
 	
-	Dotenv dotenv = Dotenv.load();
+	//Dotenv dotenv = Dotenv.load();
 
 	@Value("${cloud.aws.region.static}")
 	private String region;
