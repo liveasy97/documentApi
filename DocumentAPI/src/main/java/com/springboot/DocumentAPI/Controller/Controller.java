@@ -2,6 +2,9 @@ package com.springboot.DocumentAPI.Controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +51,13 @@ public class Controller {
 	}
 	
 	@PutMapping("/document/{entityId}")
-	public DocumentUpdateResponse updateDocuments(@PathVariable String entityId, @RequestBody UpdateEntityDoc updateEntityDoc ) {
-		return docService.updateDocuments(entityId, updateEntityDoc);
+	public ResponseEntity<Object> updateDocuments(@PathVariable String entityId, @RequestBody UpdateEntityDoc updateEntityDoc ) {
+		return new ResponseEntity<>(docService.updateDocuments(entityId, updateEntityDoc),HttpStatus.OK);
 	}
+	
+//	@DeleteMapping("/document/{entityId}")
+//	public ResponseEntity<Object> deleteDocument(@PathVariable String entityId){
+//		docService.deleteDocument(entityId);
+//		return new ResponseEntity<>("Successfully deleted",HttpStatus.OK);
+//	}
 }
