@@ -21,16 +21,16 @@ public class AWSS3Client {
 	@Value("${cloud.aws.region.static}")
 	private String region;
 	
-	//@Value("${cloud.aws.credentials.access-key}")
-	//private String accessKey;
+	@Value("${cloud.aws.credentials.access-key}")
+	private String accessKey;
 	
-	//@Value("${cloud.aws.credentials.secret-key}")
-	//private String secretKey;
+	@Value("${cloud.aws.credentials.secret-key}")
+	private String secretKey;
 	
 	@Bean
 	@Primary
 	public AmazonS3 s3client() {
-		AWSCredentials credentials = new BasicAWSCredentials(dotenv.get("ACCESS_KEY"), dotenv.get("SECRET_KEY"));
+		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
 		return AmazonS3ClientBuilder.standard()
 				.withCredentials(new AWSStaticCredentialsProvider(credentials))
 				.withRegion(region)
