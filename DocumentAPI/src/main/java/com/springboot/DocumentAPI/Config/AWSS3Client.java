@@ -11,8 +11,12 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 @Configuration
 public class AWSS3Client {
+	
+	//Dotenv dotenv = Dotenv.load();
 
 	@Value("${cloud.aws.region.static}")
 	private String region;
