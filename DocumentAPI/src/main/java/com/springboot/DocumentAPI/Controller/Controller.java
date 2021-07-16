@@ -29,7 +29,7 @@ public class Controller {
 	
 	@GetMapping("/home")
 	public String home() {
-		return "Welcome to documentApi git action check with env file...!!!";
+		return "Welcome to documentApi git action with env file check 2...!!!";
 	}
 	
 	@PostMapping("/document")
