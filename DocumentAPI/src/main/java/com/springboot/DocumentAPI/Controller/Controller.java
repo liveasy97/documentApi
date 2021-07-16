@@ -16,48 +16,58 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.springboot.DocumentAPI.Response.DocumentCreateResponse;
-import com.springboot.DocumentAPI.Response.DocumentUpdateResponse;
 import com.springboot.DocumentAPI.Entities.EntityData;
+import com.springboot.DocumentAPI.Exception.EntityNotFoundException;
 import com.springboot.DocumentAPI.Model.AddEntityDoc;
 import com.springboot.DocumentAPI.Model.DocData;
 import com.springboot.DocumentAPI.Model.GetEntityDoc;
 import com.springboot.DocumentAPI.Model.UpdateEntityDoc;
 import com.springboot.DocumentAPI.Services.DocService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class Controller {
-	
+
 	@Autowired
 	private DocService docService;
-	
+
 	@GetMapping("/home")
 	public String home() {
 		return "Welcome to documentApi...!!!";
 	}
-	
+
 	@PostMapping("/document")
 	public DocumentCreateResponse addDocument(@RequestBody AddEntityDoc addEntityDoc) {
+		log.info("AddDocument controller started");
 		return docService.addDocument(addEntityDoc);
 	}
-	
+
 	@GetMapping("/document/{entityId}")
-	public GetEntityDoc getDocuments(@PathVariable String entityId) {
+	public GetEntityDoc getDocuments(@PathVariable String entityId)
+			throws EntityNotFoundException{
+		log.info("getDocuments controller started");
 		return docService.getDocuments(entityId);
 	}
-	
+
 	@GetMapping("/document")
-	public List<EntityData> getByEntityType(@RequestParam(required = false) String entityType) {
+	public List<EntityData> getByEntityType(@RequestParam(required = false) String entityType) 
+			throws EntityNotFoundException{
+		log.info("getByEntityType controller started");
 		return docService.getByEntityType(entityType);
 	}
-	
+
 	@PutMapping("/document/{entityId}")
-	public ResponseEntity<Object> updateDocuments(@PathVariable String entityId, @RequestBody UpdateEntityDoc updateEntityDoc ) {
+	public ResponseEntity<Object> updateDocuments(@PathVariable String entityId, @RequestBody UpdateEntityDoc updateEntityDoc ) 
+			throws EntityNotFoundException{
+		log.info("updateDocuments controller started");
 		return new ResponseEntity<>(docService.updateDocuments(entityId, updateEntityDoc),HttpStatus.OK);
 	}
-	
-//	@DeleteMapping("/document/{entityId}")
-//	public ResponseEntity<Object> deleteDocument(@PathVariable String entityId){
-//		docService.deleteDocument(entityId);
-//		return new ResponseEntity<>("Successfully deleted",HttpStatus.OK);
-//	}
+
+	//	@DeleteMapping("/document/{entityId}")
+	//	public ResponseEntity<Object> deleteDocument(@PathVariable String entityId){
+	//		docService.deleteDocument(entityId);
+	//		return new ResponseEntity<>("Successfully deleted",HttpStatus.OK);
+	//	}
 }

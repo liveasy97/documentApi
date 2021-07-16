@@ -145,6 +145,7 @@ public class DocServiceImpl implements DocService {
 				return entityDao.findByShipperType();
 			}
 		}
+
 		log.info("getByEntityType service response is returned");
 		return entityDao.findAll();
 	}
@@ -197,6 +198,7 @@ public class DocServiceImpl implements DocService {
 				}
 			}
 
+			//doubt
 			//add new data
 			if(!found) {
 				//set object name
@@ -244,12 +246,12 @@ public class DocServiceImpl implements DocService {
 	}
 
 
-//	@Override
-//	public void deleteDocument(String entityId) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-	
-	
+	//	@Override
+	//	public void deleteDocument(String entityId) {
+	//		// TODO Auto-generated method stub
+	//		
+	//	}
+
+
 
 }
