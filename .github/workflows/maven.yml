@@ -5,7 +5,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
 
 
 defaults:
@@ -28,7 +28,7 @@ jobs:
       
       
 
-    - run: cd ~/actions-runner2/deploy/documentApi/documentApi/DocumentAPI
+    - run: cd ~/actions-runner/deploy/documentApi/documentApi/DocumentAPI
     - run: sudo docker container stop document-container || true
     - run: sudo docker container stop docker-postgres || true
     - run: sudo docker rm document-container || true
