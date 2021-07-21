@@ -65,9 +65,10 @@ public class Controller {
 		return new ResponseEntity<>(docService.updateDocuments(entityId, updateEntityDoc),HttpStatus.OK);
 	}
 
-	//	@DeleteMapping("/document/{entityId}")
-	//	public ResponseEntity<Object> deleteDocument(@PathVariable String entityId){
-	//		docService.deleteDocument(entityId);
-	//		return new ResponseEntity<>("Successfully deleted",HttpStatus.OK);
-	//	}
+	@DeleteMapping("/document/{entityId}")
+	public ResponseEntity<Object> deleteDocument(@PathVariable String entityId){
+		log.info("updateDocuments controller started");
+		docService.deleteDocuments(entityId);
+		return new ResponseEntity<>("Successfully deleted",HttpStatus.OK);
+	}
 }

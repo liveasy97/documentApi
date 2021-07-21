@@ -19,6 +19,6 @@ public interface DocService {
 	public List<EntityData> getByEntityType(String entityType);
 
 	public DocumentUpdateResponse updateDocuments(String entityId, UpdateEntityDoc updateEntityDoc);
-	
-//	public void deleteDocument(String entityId);
+
+	public void deleteDocuments(String entityId);
 }

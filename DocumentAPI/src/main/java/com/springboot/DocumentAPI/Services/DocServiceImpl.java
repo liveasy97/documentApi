@@ -46,7 +46,7 @@ public class DocServiceImpl implements DocService {
 	@Autowired
 	private AmazonS3 client;
 
-	private String bucketname = "document-image-upload-testing";
+	private String bucketname = "liveasyimageupload";
 
 	@Transactional(rollbackFor=Exception.class)
 	@Override
@@ -245,13 +245,26 @@ public class DocServiceImpl implements DocService {
 		return dur;
 	}
 
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void deleteDocuments(String entityId) {
+		log.info("deleteDocuments Serivce started");
+		String documentId = entityDao.findByEntityId(entityId);
 
-	//	@Override
-	//	public void deleteDocument(String entityId) {
-	//		// TODO Auto-generated method stub
-	//		
-	//	}
+		//check if document with entityId exists or not
+		if(documentId == null) {
+			throw new EntityNotFoundException(DocumentData.class,"id",entityId);
+		}
 
+		List<DocumentData> doclist = docDataDao.findByDocId(documentId);
 
+		for(DocumentData database: doclist) {				
+			String s[] = database.getDocumentLink().split("/");
+			client.deleteObject(bucketname, s[3]);
+		}
+
+		docDataDao.deleteByDocumentId(documentId);
+
+	}
 
 }
