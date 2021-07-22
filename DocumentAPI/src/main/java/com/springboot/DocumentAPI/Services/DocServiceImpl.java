@@ -46,7 +46,7 @@ public class DocServiceImpl implements DocService {
 	@Autowired
 	private AmazonS3 client;
 
-	private String bucketname = "liveasyimageupload";
+	private String bucketname = "document-image-upload-testing";
 
 	@Transactional(rollbackFor=Exception.class)
 	@Override
@@ -264,6 +264,7 @@ public class DocServiceImpl implements DocService {
 		}
 
 		docDataDao.deleteByDocumentId(documentId);
+		entityDao.deleteById(entityId);
 
 	}
 
