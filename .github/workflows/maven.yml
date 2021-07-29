@@ -1,0 +1,38 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ dev ]
+
+defaults:
+  run:
+    working-directory: ./DocumentAPI
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+      
+      
+
+    - run: cd ~/actions-runner/deploy/documentApi/documentApi/DocumentAPI
+    - run: sudo docker container stop document-container || true
+    - run: sudo docker container stop docker-postgres || true
+    - run: sudo docker rm document-container || true
+    - run: sudo docker rmi document || true
+    - run: sudo docker build -t document .
+    - run: sudo docker start docker-postgres || sudo docker run --name docker-postgres -e POSTGRES_PASSWORD=postgres -d postgres:latest
+    - run: sudo docker run -d --env-file /home/ubuntu/test.env -p 9090:9090 --name document-container --link docker-postgres:postgres document env | echo "success" 
+
