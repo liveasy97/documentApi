@@ -5,14 +5,14 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ main ]
 
 defaults:
   run:
     working-directory: ./DocumentAPI
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ['self-hosted', 'Linux', 'X64']
 
     steps:
     - uses: actions/checkout@v2
@@ -33,6 +33,6 @@ jobs:
     - run: sudo docker rm document-container || true
     - run: sudo docker rmi document || true
     - run: sudo docker build -t document .
-    - run: sudo docker start docker-postgres || sudo docker run --name docker-postgres -e POSTGRES_PASSWORD=postgres -d postgres:latest
+    - run: sudo docker start docker-postgres || sudo docker run --name docker-postgres -e POSTGRES_PASSWORD=postgres -d postgres
     - run: sudo docker run -d --env-file /home/ubuntu/test.env -p 9090:9090 --name document-container --link docker-postgres:postgres document env | echo "success" 
 
