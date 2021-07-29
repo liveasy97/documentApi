@@ -46,7 +46,7 @@ public class DocServiceImpl implements DocService {
 	@Autowired
 	private AmazonS3 client;
 
-	private String bucketname = "document-image-upload-testing";
+	private String bucketname = "liveasyimageupload";
 
 	@Transactional(rollbackFor=Exception.class)
 	@Override
