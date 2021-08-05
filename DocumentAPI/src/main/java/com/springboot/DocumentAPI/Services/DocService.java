@@ -12,12 +12,13 @@ import com.springboot.DocumentAPI.Model.GetEntityDoc;
 
 public interface DocService {
 
-	DocumentCreateResponse addDocument(AddEntityDoc addEntityDoc);
+	public DocumentCreateResponse addDocument(AddEntityDoc addEntityDoc);
 
-	GetEntityDoc getDocuments(String entityId);
+	public GetEntityDoc getDocuments(String entityId);
 
-	List<EntityData> getByEntityType(String entityType);
+	public List<EntityData> getByEntityType(String entityType);
 
-	DocumentUpdateResponse updateDocuments(String entityId, UpdateEntityDoc updateEntityDoc);
+	public DocumentUpdateResponse updateDocuments(String entityId, UpdateEntityDoc updateEntityDoc);
 
+	public void deleteDocuments(String entityId);
 }
