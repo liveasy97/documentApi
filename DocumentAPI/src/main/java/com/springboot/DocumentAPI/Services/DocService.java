@@ -16,7 +16,7 @@ public interface DocService {
 
 	public GetEntityDoc getDocuments(String entityId);
 
-	public List<EntityData> getByEntityType(String entityType);
+	public List<EntityData> getByEntityType(String entityType, Integer pageNo);
 
 	public DocumentUpdateResponse updateDocuments(String entityId, UpdateEntityDoc updateEntityDoc);
 

@@ -11,6 +11,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -131,23 +134,27 @@ public class DocServiceImpl implements DocService {
 
 	@Transactional(readOnly = true, rollbackFor = Exception.class)
 	@Override
-	public List<EntityData> getByEntityType(String entityType) {
+	public List<EntityData> getByEntityType(String entityType, Integer pageNo) {
 		log.info("getByEntityType service started");
+		if(pageNo == null) {
+			pageNo = 0;
+		}
+		Pageable page = PageRequest.of(pageNo, 15,  Sort.Direction.DESC, "timestamp");
 
 		if(entityType != null) {
 			if(entityType.equalsIgnoreCase("Truck")) {
-				return entityDao.findByTruckType();
+				return entityDao.findByTruckType(page);
 			}
 			else if(entityType.equalsIgnoreCase("Transporter")) {
-				return entityDao.findByTransporterType();
+				return entityDao.findByTransporterType(page);
 			}
 			else if(entityType.equalsIgnoreCase("Shipper")) {
-				return entityDao.findByShipperType();
+				return entityDao.findByShipperType(page);
 			}
 		}
 
 		log.info("getByEntityType service response is returned");
-		return entityDao.findAll();
+		return entityDao.getAll(page);
 	}
 	@Transactional(rollbackFor = Exception.class)
 	@Override
