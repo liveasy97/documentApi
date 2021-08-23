@@ -52,10 +52,11 @@ public class Controller {
 	}
 
 	@GetMapping("/document")
-	public List<EntityData> getByEntityType(@RequestParam(required = false) String entityType) 
+	public List<EntityData> getByEntityType(@RequestParam(required = false) String entityType,
+			@RequestParam(required = false) Integer pageNo)
 			throws EntityNotFoundException{
 		log.info("getByEntityType controller started");
-		return docService.getByEntityType(entityType);
+		return docService.getByEntityType(entityType, pageNo);
 	}
 
 	@PutMapping("/document/{entityId}")
