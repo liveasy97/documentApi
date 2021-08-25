@@ -29,10 +29,8 @@ jobs:
 
     - run: cd ~/actions-runner/deploy/documentApi/documentApi/DocumentAPI
     - run: sudo docker container stop document-container || true
-    - run: sudo docker container stop docker-postgres || true
     - run: sudo docker rm document-container || true
     - run: sudo docker rmi document || true
     - run: sudo docker build -t document .
-    - run: sudo docker start docker-postgres || sudo docker run --name docker-postgres -e POSTGRES_PASSWORD=postgres -d postgres:latest
-    - run: sudo docker run -d --env-file /home/ubuntu/test.env -p 9090:9090 --name document-container --link docker-postgres:postgres document env | echo "success" 
+    - run: sudo docker run -d --env-file /home/ubuntu/test.env -p 9090:9090 --name document-container document env | echo "success" 
 
