@@ -5,14 +5,14 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ main ]
 
 defaults:
   run:
     working-directory: ./DocumentAPI
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ['self-hosted', 'Linux', 'X64', 'main']
 
     steps:
     - uses: actions/checkout@v2
@@ -33,4 +33,5 @@ jobs:
     - run: sudo docker rmi document || true
     - run: sudo docker build -t document .
     - run: sudo docker run -d --env-file /home/ubuntu/test.env -p 9090:9090 --name document-container document env | echo "success" 
+
 
